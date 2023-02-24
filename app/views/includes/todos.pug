@@ -1,0 +1,18 @@
+h4 <strong>Pending</strong>
+br
+ul#incompletes.todoList.inompleteList
+    each todo in incompleteTodos
+        include todoItem.pug
+    else
+        p Nothing to do yet.
+
+hr
+
+h4 <strong>Done</strong>
+br
+ul#completes.todoList.completedList
+    each todo in completedTodos
+        include todoItem.pug
+    else
+        p Nothing completed yet.
+br

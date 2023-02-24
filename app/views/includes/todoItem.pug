@@ -1,0 +1,10 @@
+li.todoItem.field.has-addons(todoid= todo.id todotask= todo.task tododone= todo.done)
+    .control
+        button.button.toggleBtn
+            i.far(class=todo.done ? 'fa-check-square' : 'fa-square')
+    .control.is-expanded.taskControl
+        button.taskBtn.button.is-fullwidth= todo.task
+        input.editTask(type="text" value= todo.task)
+    .control
+        button.button.deleteBtn
+            i.fas.fa-times
