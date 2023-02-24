@@ -11,7 +11,12 @@
     "type": "git",
     "url": ""
   },
-  "keywords": ["todo", "express", "heroku", "mysql"],
+  "keywords": [
+    "todo",
+    "express",
+    "heroku",
+    "mysql"
+  ],
   "author": "Yuvraj Singh",
   "license": "MIT",
   "bugs": {
@@ -20,6 +25,7 @@
   "homepage": "",
   "dependencies": {
     "bulma": "^0.7.2",
+    "dotenv": "^16.0.3",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "pug": "^2.0.3"
