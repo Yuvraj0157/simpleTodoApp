@@ -1,5 +1,8 @@
 # simpleTodoApp
 
+![image](https://user-images.githubusercontent.com/82658229/221350471-9a3b461a-29f4-4073-9e6a-51dd31f3a472.png)
+
+
 ## Quick Start
 ```
 # Clone
