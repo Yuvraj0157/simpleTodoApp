@@ -10,7 +10,7 @@ const app = express();
 
 // View engine
 app.set('views', path.join(__dirname, 'app/views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 // Public assets
 app.use(express.static(path.join(__dirname, '/app/public')));
