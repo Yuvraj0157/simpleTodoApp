@@ -1,29 +1,28 @@
-// Dependencies
-const router = require('./app/controllers/todo_controller');
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+const todoRoutes = require('./routes/todo');
 
-// Express setup
-// const PORT = process.env.PORT || 3000;
+
 const PORT = 3000;
 const app = express();
 
+
 // View engine
-app.set('views', path.join(__dirname, 'app/views'));
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, '/public')));
 
-// Public assets
-app.use(express.static(path.join(__dirname, '/app/public')));
 
-// Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(router);
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Redirect to home on bad route.
-app.get('*', (req, res) => res.redirect('/'));
 
-// Listen
+app.use('/todos', todoRoutes);
+
+
+app.get('*', (req, res) => res.redirect('/todos'));
+
+
 app.listen(PORT, () => {
-    console.log(`--> Server running on http://localhost:${PORT}/`);
+    console.log(`Server running on http://localhost:${PORT}/`);
 });
