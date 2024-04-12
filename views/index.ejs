@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <h1>Todo App</h1>
+    <form action="/todos" method="POST">
+        <input type="text" name="task" placeholder="Enter your todo">
+        <input type="date" name="dueDate" >
+        <button type="submit">Add Todo</button>
+    </form>
+    <% if (todos.length > 0) { %>
+        <h3>Todo List</h3>
+        <ul>
+            <% todos.forEach(todo => { %>
+                <% if (!todo.status) { %>
+                    <li>
+                        <form action="/todos/<%= todo.id %>/update" method="POST">
+                            <input type="checkbox" name="completed" onchange="this.form.submit()" <%= todo.status ? 'checked' : '' %>>
+                            <span><%= todo.task %></span>
+                            <% if (todo.dueDate) { %>
+                                <span><%= todo.dueDate %></span>
+                            <% } else { %> 
+                                <span>No due date</span>
+                            <% } %>
+                        </form>
+                        <form action="/todos/<%= todo.id %>/delete" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                <% } %>
+            <% }) %>
+        </ul>
+        <h3>Completed</h3>
+        <ul>
+            <% todos.forEach(todo => { %>
+                <% if (todo.status) { %>
+                    <li>
+                        <form action="/todos/<%= todo.id %>/update" method="POST">
+                            <input type="checkbox" name="completed" onchange="this.form.submit()" <%= todo.status ? 'checked' : '' %>>
+                            <span><%= todo.task %></span>
+                            <% if (todo.dueDate) { %>
+                                <span><%= todo.dueDate %></span>
+                            <% } else { %> 
+                                <span>No due date</span>
+                            <% } %>
+                        </form>
+                        <form action="/todos/<%= todo.id %>/delete" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                <% } %>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No todos found</p>
+    <% } %>
+</body>
+</html>
