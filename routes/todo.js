@@ -20,15 +20,18 @@ router.get('/', (req, res) => {
             console.log(error);
         }
         // console.log(results);
+        results = results.map((result) => {
+            result.due = result.due ? result.due.toLocaleString().split(',')[0] : null;   
+            return result;
+        });
         res.render('index', { todos: results });
-        // res.json(results);
     });
 });
 
 router.post('/', (req, res) => {
-    const task = req.body.task;
-    // const status = 0;
-    connection.query('INSERT INTO todos (task) VALUES (?)', [task], (error, results) => {
+    const task = req.body.task.trim();
+    const due = req.body.due;
+    connection.query('INSERT INTO todos (task, due) VALUES (?,?)', [task, due ? due : null], (error, results) => {
         if (error) {
             console.log(error);
         }

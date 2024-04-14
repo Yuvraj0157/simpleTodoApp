@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    padding: 1rem;
+}
+
+.add-todo {
+    background-color: #fff;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-todo h3 {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.add-todo-form {
+    display: flex;
+}
+
+.add-todo-form input[type="text"],
+.add-todo-form input[type="date"],
+.add-todo-form button {
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-todo-form input[type="text"]{
+    flex: 1;
+}
+
+input[type="date"] {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-inline-start: 1px;
+    cursor: default;
+    overflow: hidden;
+    width: 17%; 
+}
+
+.add-todo-form button.add-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-todo-form button.add-button:hover {
+    background-color: #0056b3;
+}
+
+span {
+    margin: 0.1rem;
+
+}
+
+.todo-list {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+.todo-list h3 {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.todo-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-list li {
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-list li form {
+    display: inline;
+}
+
+.todo-list li form button.delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 0.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.todo-list li form button.delete-button:hover {
+    background-color: #c82333;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.completed-todos {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+.completed-todos h3 {
+    margin-top: 2rem;
+}
+
+.todo-list li form input[type="checkbox"] {
+    height: 19px;
+    width: 19px;
+    /* border-radius: 25%; */
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+
