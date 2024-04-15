@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const todoRoutes = require('./routes/todo');
 
 
-const PORT = 3000;
+const PORT = 80;
 const app = express();
 
 
