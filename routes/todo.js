@@ -15,7 +15,7 @@ const fetchStaus = (id) => {
 }
 
 router.get('/', (req, res) => {
-    connection.query('SELECT * FROM todos', (error, results) => {
+    connection.query('SELECT * FROM todos order by due', (error, results) => {
         if (error) {
             console.log(error);
         }
