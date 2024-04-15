@@ -6,6 +6,12 @@ var mysqlConnection = mysql.createPool({
     user: process.env.DBUSER,
     password: process.env.DBPASSWORD,
     database: process.env.DBNAME,
-    multipleStatements : true
+    connectionLimit: 10
 });
-module.exports = mysqlConnection;
+
+mysqlConnection.getConnection((err, conn) => {
+    if(err) console.log(err)
+    console.log("Connected successfully")
+})
+
+module.exports = mysqlConnection.promise();

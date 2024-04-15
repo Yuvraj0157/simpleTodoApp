@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const todoRoutes = require('./routes/todo');
-
+require('dotenv').config();
 
 const PORT = 80;
 const app = express();
