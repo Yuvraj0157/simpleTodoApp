@@ -14,4 +14,4 @@ mysqlConnection.getConnection((err, conn) => {
     console.log("Connected successfully")
 })
 
-module.exports = mysqlConnection.promise();
+module.exports = mysqlConnection;

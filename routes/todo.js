@@ -19,11 +19,10 @@ router.get('/', (req, res) => {
         if (error) {
             console.log(error);
         }
-        // console.log(results);
-        results = results.map((result) => {
-            result.due = result.due ? result.due.toLocaleString().split(',')[0] : null;   
-            return result;
-        });
+        // results = results.map((result) => {
+        //     result.due = result.due ? result.due.toLocaleString().split(',')[0] : null;   
+        //     return result;
+        // });
         res.render('index', { todos: results });
     });
 });
