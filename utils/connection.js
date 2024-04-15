@@ -6,7 +6,7 @@ var mysqlConnection = mysql.createPool({
     user: process.env.DBUSER,
     password: process.env.DBPASSWORD,
     database: process.env.DBNAME,
-    connectionLimit: 10
+    connectionLimit: 5,
 });
 
 mysqlConnection.getConnection((err, conn) => {
