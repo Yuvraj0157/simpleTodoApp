@@ -1,10 +1,17 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const todoRoutes = require('./routes/todo');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
-const PORT = process.env.PORT || 5000;
+
+const todoRoutes = require('./routes/todo');
+const authRoutes = require('./routes/auth');
+const registerRoutes = require('./routes/register');
+
+
+const PORT = 5000; // process.env.port is required for render to work.
 const app = express();
 
 
@@ -14,15 +21,25 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '/public')));
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+
 
 
 app.use('/todos', todoRoutes);
+app.use('/login', authRoutes);
+app.use('/register', registerRoutes);
 
 
-app.get('*', (req, res) => res.redirect('/todos'));
+app.get('/home', (req, res) => {
+    res.render('home', { title: 'Home' });
+});
 
+app.get('/', (req, res) => {
+    res.render('home', { title: 'Home' });
+});
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}/`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });

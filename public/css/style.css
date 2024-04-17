@@ -9,13 +9,41 @@ body {
 .header {
     background-color: #333;
     color: #fff;
-    text-align: center;
+    text-align: left;
 }
 
 .header h1 {
     margin: 0;
-    padding: 1rem;
+    padding: 0.5rem;
 }
+
+.header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content:left;
+}
+
+.header ul li {
+    margin: 0 0.5rem;
+}
+
+.header ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header ul li a:hover {
+    text-decoration: none;
+    color: aquamarine;
+}
+
+
 
 .add-todo {
     background-color: #fff;

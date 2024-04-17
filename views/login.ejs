@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+    
+        <title><%= title %></title>
+    
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+    
+        <!-- Bootstrap core CSS -->
+        <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet">
+    
+    
+        <!-- Custom styles for this template -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    </head>
+  <body class="text-center">
+    <form action="/login" method="post" id="loginform" class="form-signin">
+      <a href="/home"><img class="mb-4" src="logo1.svg" alt="logo" width="150" height="150"></a>      
+      <h1 class="h5 mb-3 font-weight-normal">Login</h1>
+      
+      <label for="inputEmail" class="sr-only">Username</label>
+      <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <!-- <div class="checkbox mb-3">
+        <label>
+          <input id="inputRemeber" type="checkbox" value="remember-me" checked> Remember me
+        </label>
+      </div> -->
+      <button id="loginbutton" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-danger btn-block" onclick="window.location.href='/register'" type="button">Register</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
+    </form>
+  </body>
+</html>

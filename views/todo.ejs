@@ -10,6 +10,7 @@
       required
     />
     <input type="date" name="due" min="<%= (new Date()).toISOString().split('T')[0] %>"/>
+    <!-- <input type="hidden" name="userID" value="<%= userID %>"/> -->
     <button type="submit" class="add-button">Add</button>
   </form>
 </div>
@@ -19,7 +20,7 @@
         <ul>
             <% todos.forEach(todo=> { %> <% if (!todo.status) { %>
             <li>
-                <form action="/todos/<%= todo.id %>/update" method="POST">
+                <form action="/todos/update/<%= todo.id %>" method="POST">
                     <input type="checkbox" name="completed" onchange="this.form.submit()"
                     <%=todo.status ? 'checked' : '' %>>
                     <span class="<%= todo.status ? 'completed' : '' %>">
@@ -31,7 +32,7 @@
                     <span>No due date</span>
                     <% } %>
                 </form>
-                <form action="/todos/<%= todo.id %>/delete" method="POST">
+                <form action="/todos/delete/<%= todo.id %>" method="POST">
                     <button type="submit" class="delete-button">Delete</button>
                 </form>
             </li>
@@ -43,7 +44,7 @@
         <ul>
             <% todos.forEach(todo=> { %> <% if (todo.status) { %>
             <li>
-                <form action="/todos/<%= todo.id %>/update" method="POST">
+                <form action="/todos/update/<%= todo.id %>" method="POST">
                     <input type="checkbox" name="completed" onchange="this.form.submit()"
                     <%=todo.status ? 'checked' : '' %>>
                     <span class="completed"> <%= todo.task %> </span>
@@ -53,7 +54,7 @@
                     <span>No due date</span>
                     <% } %>
                 </form>
-                <form action="/todos/<%= todo.id %>/delete" method="POST">
+                <form action="/todos/delete/<%= todo.id %>" method="POST">
                     <button type="submit" class="delete-button">Delete</button>
                 </form>
             </li>

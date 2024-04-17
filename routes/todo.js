@@ -2,10 +2,11 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const connection = require('../utils/connection');
+const verifyToken = require('../middleware/authMiddleware');
 
-const fetchStaus = (id) => {
+const fetchStaus = (userID, id) => {
     return new Promise((resolve, reject) => {
-        connection.query('SELECT status FROM todos WHERE id = ?', [id], (error, results) => {
+        connection.query('SELECT status FROM todos WHERE userID = ? and id = ?', [userID, id], (error, results) => {
             if (error) {
                 console.log(error);
             }
@@ -14,8 +15,9 @@ const fetchStaus = (id) => {
     });
 }
 
-router.get('/', (req, res) => {
-    connection.query('SELECT * FROM todos order by due', (error, results) => {
+router.get('/', verifyToken, (req, res) => {
+    const userID = req.userID;
+    connection.query('SELECT * FROM todos where userID = ? order by due',[userID], (error, results) => {
         if (error) {
             console.log(error);
         }
@@ -23,40 +25,43 @@ router.get('/', (req, res) => {
             result.due = result.due ? result.due.toLocaleString().split(',')[0] : null;   
             return result;
         });
-        res.render('index', { todos: results });
+        res.render('todo', { todos: results, userID: userID});
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', verifyToken, (req, res) => {
     const task = req.body.task.trim();
     const due = req.body.due;
-    connection.query('INSERT INTO todos (task, due) VALUES (?,?)', [task, due ? due : null], (error, results) => {
+    const userID = req.userID;
+    connection.query('INSERT INTO todos (task, due, userID) VALUES (?,?,?)', [task, due ? due : null, userID], (error, results) => {
         if (error) {
             console.log(error);
         }
         // console.log(results);
-        res.redirect('/');
+        res.redirect("/todos");
     });
 });
 
-router.post('/:id/delete', (req, res) => {
-    const id = parseInt(req.params.id);
-    connection.query('DELETE FROM todos WHERE id = ?', [id], (error, results) => {
+router.post('/delete/:id', verifyToken, (req, res) => {
+    const id = req.params.id;
+    const userID = req.userID;
+    connection.query('DELETE FROM todos WHERE userID = ? and id = ?', [userID, id], (error, results) => {
         if (error) {
             console.log(error);
         }
-        res.redirect('/');
+        res.redirect("/todos");
     });
 }); 
 
-router.post('/:id/update', async (req, res) => {
-    const id = parseInt(req.params.id);
-    let currentStatus = await fetchStaus(id);
-    connection.query('UPDATE todos SET status = ? WHERE id = ?', [!currentStatus, id], (error, results) => {
+router.post('/update/:id', verifyToken, async (req, res) => {
+    const id = req.params.id;
+    const userID = req.userID;
+    let currentStatus = await fetchStaus(userID, id);
+    connection.query('UPDATE todos SET status = ? WHERE userID = ? and id = ?', [!currentStatus, userID, id], (error, results) => {
         if (error) {
             console.log(error);
         }
-        res.redirect('/');
+        res.redirect("/todos");
     });
 });
 
