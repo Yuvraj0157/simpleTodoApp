@@ -223,8 +223,9 @@ router.post('/reset-password',
 
         jwt.verify(token, process.env.JWT_RESET_PASSWORD, (err, decoded) => {
             if (err) {
-                console.log(err);
+                // console.log(err);
                 res.render('404');
+                return;
             }
             const userID = decoded.userID;
             bcrypt.hash(password, 10, (err, hash) => {

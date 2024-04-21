@@ -44,6 +44,10 @@ app.get('/', (req, res) => {
     res.render('home', { title: 'Home' });
 });
 
+app.get('*', (req, res) => {
+    res.render('404');
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
