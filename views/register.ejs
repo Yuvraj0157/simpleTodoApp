@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
+        <link rel="icon" href="/favicon.ico">
     
         <title><%= title %></title>
     
@@ -21,10 +21,13 @@
     </head>
   <body class="text-center">
     <form action="/register" method="post" id="signupform" class="form-signin">
-        <a href="/home"><img class="mb-4" src="logo1.svg" alt="logo" width="150" height="150"></a>
+        <a href="/home"><img class="mb-4" src="/logo1.svg" alt="logo" width="150" height="150"></a>
       <h1 class="h5 mb-3 font-weight-normal">Register</h1>
-      <label for="inputUsername" class="sr-only">Username</label>
-
+      <% if (error) { %>
+        <div style="padding: 3px; color: rgb(255, 34, 0);">
+        <%= error %>
+        </div>
+      <% } %>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required>
       <label for="inputPassword" class="sr-only">Password</label>
@@ -33,7 +36,7 @@
       <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
       <button class="btn btn-lg btn-danger btn-block" type="submit">Register</button>
       <br>
-      <a href="/login">Already have an account?</a>
+      <a href="/login" style="text-decoration: none;">Already have an account?</a>
       <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
     </form>
   </body>

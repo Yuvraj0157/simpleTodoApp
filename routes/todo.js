@@ -19,6 +19,7 @@ router.get('/', verifyToken, (req, res) => {
     const userID = req.userID;
     connection.query('SELECT * FROM todos where userID = ? order by due',[userID], (error, results) => {
         if (error) {
+            res.render('500');
             console.log(error);
         }
         results = results.map((result) => {
@@ -35,6 +36,7 @@ router.post('/', verifyToken, (req, res) => {
     const userID = req.userID;
     connection.query('INSERT INTO todos (task, due, userID) VALUES (?,?,?)', [task, due ? due : null, userID], (error, results) => {
         if (error) {
+            res.render('500');
             console.log(error);
         }
         // console.log(results);
@@ -47,6 +49,7 @@ router.post('/delete/:id', verifyToken, (req, res) => {
     const userID = req.userID;
     connection.query('DELETE FROM todos WHERE userID = ? and id = ?', [userID, id], (error, results) => {
         if (error) {
+            res.render('500');
             console.log(error);
         }
         res.redirect("/todos");
@@ -59,6 +62,7 @@ router.post('/update/:id', verifyToken, async (req, res) => {
     let currentStatus = await fetchStaus(userID, id);
     connection.query('UPDATE todos SET status = ? WHERE userID = ? and id = ?', [!currentStatus, userID, id], (error, results) => {
         if (error) {
+            res.render('500');
             console.log(error);
         }
         res.redirect("/todos");
