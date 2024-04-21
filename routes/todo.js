@@ -17,7 +17,7 @@ const fetchStaus = (userID, id) => {
 
 router.get('/', verifyToken, (req, res) => {
     const userID = req.userID;
-    connection.query('SELECT * FROM todos where userID = ? order by due',[userID], (error, results) => {
+    connection.query("SELECT *,(SELECT COUNT(*) FROM todos WHERE status = 0) AS uncomplete FROM todos where userID = ? order by due",[userID], (error, results) => {
         if (error) {
             res.render('500');
             console.log(error);
@@ -26,7 +26,8 @@ router.get('/', verifyToken, (req, res) => {
             result.due = result.due ? result.due.toLocaleString().split(',')[0] : null;   
             return result;
         });
-        res.render('todo', { todos: results, userID: userID});
+        // console.log(results);
+        res.render('todo', { todos: results});
     });
 });
 

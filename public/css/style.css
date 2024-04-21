@@ -6,6 +6,22 @@ body {
     background-color: #f4f4f4;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav img {
+    background-color: #f4f4f4;
+    width: 70px;
+    height: 70px;
+    border-radius: 10%;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-right: 15px;
+}
+
 .header {
     background-color: #333;
     color: #fff;
@@ -36,13 +52,13 @@ body {
 .header ul li a {
     color: #fff;
     text-decoration: none;
+    font-size: 18px;
 }
 
 .header ul li a:hover {
     text-decoration: none;
-    color: aquamarine;
+    color: rgb(37, 192, 216);
 }
-
 
 
 .add-todo {
@@ -171,6 +187,10 @@ span {
     /* border-radius: 25%; */
     vertical-align: middle;
     cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 
