@@ -15,9 +15,9 @@
 </div>
 <% if (todos.length> 0) { %>
     <div class="todo-list">
-        <% if(todos[0].uncomplete){ %>
+        <% //if(todos[0].uncomplete){ %>
         <h3>Todo List</h3>
-        <% } %>
+        <% //} %>
         <ul>
             <% todos.forEach(todo=> { %> <% if (!todo.status) { %>
             <li>
@@ -41,9 +41,9 @@
         </ul>
     </div>
     <div class="todo-list completed-todos">
-        <% if(todos[0].uncomplete != todos.length){ %>
+        <% //if(todos[0].uncomplete != todos.length){ %>
         <h3>Completed</h3>
-        <% } %>
+        <%// } %>
         <ul>
             <% todos.forEach(todo=> { %> <% if (todo.status) { %>
             <li>
