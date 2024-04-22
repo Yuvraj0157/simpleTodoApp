@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
@@ -13,7 +13,10 @@ const transporter = nodemailer.createTransport({
 
 exports.sendEmail = async (link, email) => {
     const mailOptions = {
-        from: process.env.EMAIL,
+        from: {
+            name: "Todo App",
+            address: process.env.EMAIL,
+        },
         to: email,
         subject: "Reset Your Password",
         html: `
@@ -71,7 +74,7 @@ exports.sendEmail = async (link, email) => {
 
     try {
         const response = await transporter.sendMail(mailOptions);
-        // console.log(response);
+        console.log(response);
     }
     catch (error) {
         console.error(error);
