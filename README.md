@@ -27,6 +27,8 @@ git clone https://github.com/Yuvraj0157/simpleTodoApp.git
 # Install
 npm i
 
+# Create database and tables
+
 # Set .env file
 
 # Start
