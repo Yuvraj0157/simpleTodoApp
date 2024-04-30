@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-exports.sendEmail = async (link, email) => {
+exports.sendEmail = (link, email) => {
     const mailOptions = {
         from: {
             name: "Todo App",
@@ -73,7 +73,7 @@ exports.sendEmail = async (link, email) => {
     };
 
     try {
-        const response = await transporter.sendMail(mailOptions);
+        const response = transporter.sendMail(mailOptions);
         console.log(response);
     }
     catch (error) {

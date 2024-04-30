@@ -14,7 +14,7 @@
   </form>
 </div>
 <% if (todos.length> 0) { %>
-    <% if(todos[0].uncomplete) { %>
+    <% if(todos[0].dataValues.uncomplete) { %>
         <div class="todo-list">
             <h3>Todo List</h3>
             <ul>
@@ -40,7 +40,7 @@
             </ul>
         </div>
     <% } %>
-    <% if(todos[0].uncomplete != todos.length) { %>
+    <% if(todos[0].dataValues.uncomplete != todos.length) { %>
         <div class="todo-list completed-todos">
             <h3>Completed</h3>
             <ul>
