@@ -4,9 +4,13 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
+const Sequelize = require('sequelize');
 require('dotenv').config();
 
 
+const sequelize = require('./utils/connection');
+const User = require('./models/user'); 
+const Todo = require('./models/todo');
 const todoRoutes = require('./routes/todo');
 const authRoutes = require('./routes/auth');
 
@@ -48,6 +52,12 @@ app.get('*', (req, res) => {
     res.status(404).render('404');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+
+sequelize.sync()
+    .then((res) => {
+        console.log('Database Synced');
+        app.listen(PORT, () => {
+            console.log(`Server is running at http://localhost:${PORT}`);
+        });
+    })
+    .catch(err => console.log(err));
