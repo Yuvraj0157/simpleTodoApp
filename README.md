@@ -19,28 +19,74 @@
 ![image](https://github.com/Yuvraj0157/simpleTodoApp/assets/82658229/247d0035-f768-4fcb-a7c0-8c5cf4ba48a9)
 
 
-## Quick Start
+## Prerequisites
+Make sure you have the following tools installed:
+
+### Node.js
+### MySQL
+### Git
+
+## Quick Start/Contributing
 ```
+# Fork the Repository
+Fork the repository by clicking the "Fork" button at the top right of the GitHub page.
+
 # Clone
 git clone https://github.com/Yuvraj0157/simpleTodoApp.git
 
 # Install
 npm i
 
-# Create database and tables
+# Create a database named todos_db on your local MySQL server. Make sure to use the same credentials(Host, User, Password, Port) in the .env file
 
-# Set .env file
+# Set .env file with these variables
+PORT = 
+DBHOST = 
+DBUSER = 
+DBPASSWORD = YOUR_PSSWD
+DBNAME = todos_db
+
+JWT_SECRET = random_jwt_secret
+JWT_EXPIRY = 7d
+
+JWT_RESET_PASSWORD = random_jwt_secret
+EXPIRY_RESET_PASSWORD = 15m
+
+SESSION_SECRET = random_secret
 
 # Start
 npm start
+
+# Create a New Branch:
+Create a new branch for your changes. It’s good practice to name your branch descriptively:
+git checkout -b my-feature-branch
+
+# Make Changes:
+Implement your changes.
+Test thoroughly to ensure everything works as expected.
+
+# Commit Changes:
+After making the necessary changes, commit them with a clear and descriptive message:
+git commit -m "Add feature XYZ"
+
+# Push Changes to GitHub:
+Push your changes to your forked repository:
+git push origin my-feature-branch
+
+# Create a Pull Request:
+Go to the original repository.
+Click on the "Pull Requests" tab, and then click on "New Pull Request".
+Select your branch and create a pull request.
+Provide a clear description of the changes you have made and reference the corresponding issue (if applicable).
+
 ```
 
 ## Tech Stack
-Frontend: HTML, CSS, JS, Ejs
+Frontend: HTML, CSS, JS, EJS
 
 Backend: Nodejs, Expressjs
 
-Database: MySQL
+Database: MySQL/Sequelize
 
 
 ## Features
