@@ -45,7 +45,7 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.render('home', { title: 'Home' });
+    res.redirect('/home');
 });
 
 app.get('*', (req, res) => {
