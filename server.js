@@ -13,7 +13,7 @@ const User = require('./models/user');
 const Todo = require('./models/todo');
 const todoRoutes = require('./routes/todo');
 const authRoutes = require('./routes/auth');
-
+const verifyToken = require('./middleware/tokenMiddleware');
 
 const PORT = process.env.PORT || 3000; // process.env.port is required for render to work.
 const app = express();
@@ -40,8 +40,8 @@ app.use('/todos', todoRoutes);
 app.use(authRoutes);
 
 
-app.get('/home', (req, res) => {
-    const isLoggedIn = (req.cookies.jwt) ? true : false;
+app.get('/home', verifyToken, (req, res) => {
+    const isLoggedIn = req.isLoggedIn;
     res.render('home', { title: 'Home', isLoggedIn:isLoggedIn });
 });
 
