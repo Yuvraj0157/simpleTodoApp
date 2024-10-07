@@ -137,34 +137,97 @@ span {
     padding: 0;
 }
 
-.todo-list li {
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #fff;
     margin-bottom: 0.5rem;
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-task {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    min-width: 0;
+    margin-right: 1rem;
+    position: relative;
 }
 
-.todo-list li form {
-    display: inline;
+.todo-task span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    display: inline-block;
 }
 
-.todo-list li form button.delete-button {
+.todo-task span:hover::after {
+    content: attr(data-full-text);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    white-space: normal;
+    background-color: #f8f6f6fa;
+    color: #2b2727;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 10;
+    max-width: 300px;
+    word-wrap: break-word;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.todo-task span:hover::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: calc(100% - 5px);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent;
+}
+
+.todo-due {
+    flex: 0 0 120px;
+    text-align: center;
+    padding: 0 0.5rem;
+    white-space: nowrap;
+}
+
+.todo-delete {
+    flex: 0 0 auto;
+    margin-left: 1rem;
+}
+
+.todo-delete .delete-button {
     background-color: #dc3545;
     color: #fff;
     border: none;
-    padding: 0.2rem;
+    padding: 0.4rem 0.6rem;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
-.todo-list li form button.delete-button:hover {
+.todo-delete .delete-button:hover {
     background-color: #c82333;
 }
+
+/* Remove these styles */
+/*
+.todo-list li form {
+    display: contents;
+}
+
+.todo-list li {
+    display: block;
+}
+*/
 
 .completed {
     text-decoration: line-through;
@@ -181,12 +244,8 @@ span {
     margin-top: 2rem;
 }
 
-.todo-list li form input[type="checkbox"] {
-    height: 19px;
-    width: 19px;
-    /* border-radius: 25%; */
-    vertical-align: middle;
-    cursor: pointer;
+.completed-todos .todo-item {
+    opacity: 0.7;
 }
 
 ::-webkit-scrollbar {
