@@ -41,7 +41,8 @@ app.use(authRoutes);
 
 
 app.get('/home', (req, res) => {
-    res.render('home', { title: 'Home' });
+    const isLoggedIn = (req.cookies.jwt) ? true : false;
+    res.render('home', { title: 'Home', isLoggedIn:isLoggedIn });
 });
 
 app.get('/', (req, res) => {

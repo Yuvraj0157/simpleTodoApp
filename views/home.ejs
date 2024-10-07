@@ -25,9 +25,13 @@
     <form class="form-signin">
       <img class="mb-4" src="/logo1.svg" alt="logo" width="150" height="150">
       <h1 class="h3 mb-3 font-weight-normal">HOME</h1>
-      <button class="btn btn-lg btn-secondary btn-block" onclick="window.location.href='/todos'" type="button">Todos</button>
+      <% if (isLoggedIn) { %>
+        <button class="btn btn-lg btn-secondary btn-block" onclick="window.location.href='/todos'" type="button">Todos</button>
+      <% } %>
+      <% if (!isLoggedIn) { %>
       <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='/login'" type="button">Login</button>
       <button class="btn btn-lg btn-danger btn-block" onclick="window.location.href='/register'" type="button">Register</button>
+      <% } %>
       <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
     </form>
   </body>
