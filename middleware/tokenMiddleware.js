@@ -1,19 +1,19 @@
 const jwt = require("jsonwebtoken");
 
-function verifyToken(req, res, next) {
+function validateToken(req, res, next) {
     const token = req.cookies.jwt;
     if (!token) {
         req.isLoggedIn = false;
-        next();
+        return next();
     }
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
             req.isLoggedIn = false;
-            next();
+            return next();
         }
         req.isLoggedIn = true;
         next();
     });
 }
 
-module.exports = verifyToken;
+module.exports = validateToken;
