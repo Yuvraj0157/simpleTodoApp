@@ -13,7 +13,7 @@ const User = require('./models/user');
 const Todo = require('./models/todo');
 const todoRoutes = require('./routes/todo');
 const authRoutes = require('./routes/auth');
-const verifyToken = require('./middleware/tokenMiddleware');
+const validateToken = require('./middleware/tokenMiddleware');
 
 const PORT = process.env.PORT || 3000; // process.env.port is required for render to work.
 const app = express();
@@ -40,9 +40,7 @@ app.use(flash());
 app.use('/todos', todoRoutes);
 app.use(authRoutes);
 
-app.get('/home', verifyToken, (req, res, next) => {
-  try {
-    const isLoggedIn = req.isLoggedIn;
+const isLoggedIn = req.isLoggedIn;
     res.render('home', { title: 'Home', isLoggedIn: isLoggedIn });
   } catch (error) {
     next(error);
