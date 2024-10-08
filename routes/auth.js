@@ -168,14 +168,9 @@ router.post('/login',
                 bcrypt.compare(password, result.password, (err, comparison) => {
                     if (comparison) {
                         const userID = result.id;
-                        if (!process.env.JWT_SECRET) {
-                            console.error('JWT_SECRET is not set');
-                            return res.status(500).render('500');
-                        }
                         jwt.sign({ userID }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRY || '7d'}, (err, token) => {
                             if (err) {
-                                console.error('JWT signing error:', err);
-                                return res.status(500).render('500');
+                                console.log(err);
                             }
                             res.cookie('jwt', token, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000, secure: true});
                             res.redirect('/todos');

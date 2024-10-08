@@ -36,15 +36,13 @@ app.use(session({
 app.use(flash());
 
 
-// Use the routes directly without the extra logging
 app.use('/todos', todoRoutes);
 app.use(authRoutes);
 
-const isLoggedIn = req.isLoggedIn;
-    res.render('home', { title: 'Home', isLoggedIn: isLoggedIn });
-  } catch (error) {
-    next(error);
-  }
+
+app.get('/home', validateToken, (req, res) => {
+    const isLoggedIn = req.isLoggedIn;
+    res.render('home', { title: 'Home', isLoggedIn:isLoggedIn });
 });
 
 app.get('/', (req, res) => {
@@ -55,14 +53,6 @@ app.get('*', (req, res) => {
     res.status(404).render('404');
 });
 
-
-// Add this error handling middleware after your routes
-app.use((err, req, res, next) => {
-  console.error('Error:', err);
-  if (!res.headersSent) {
-    res.status(500).send('Something went wrong!');
-  }
-});
 
 sequelize.sync()
     .then((res) => {
