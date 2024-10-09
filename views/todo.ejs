@@ -23,7 +23,7 @@
                     <% if (!todo.status) { %>
                     <li class="todo-item">
                         <form action="/todos/update/<%= todo.id %>" method="POST" class="todo-task">
-                            <input type="checkbox" name="completed" onchange="this.form.submit()"
+                            <input type="checkbox" class="todo-checkbox" name="completed" onchange="this.form.submit()"
                             <%= todo.status ? 'checked' : '' %>>
                             <span class="<%= todo.status ? 'completed' : '' %>" data-full-text="<%= todo.task %>">
                                 <%= todo.task %>
@@ -54,7 +54,7 @@
                     <% if (todo.status) { %>
                     <li class="todo-item">
                         <form action="/todos/update/<%= todo.id %>" method="POST" class="todo-task">
-                            <input type="checkbox" name="completed" onchange="this.form.submit()"
+                            <input type="checkbox" class="todo-checkbox" name="completed" onchange="this.form.submit()"
                             <%= todo.status ? 'checked' : '' %>>
                             <span class="completed" data-full-text="<%= todo.task %>">
                                 <%= todo.task %>

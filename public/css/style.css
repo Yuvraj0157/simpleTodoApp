@@ -60,7 +60,6 @@ nav img {
     color: rgb(37, 192, 216);
 }
 
-
 .add-todo {
     background-color: #fff;
     margin: 3rem auto;
@@ -117,7 +116,6 @@ input[type="date"] {
 
 span {
     margin: 0.1rem;
-
 }
 
 .todo-list {
@@ -218,17 +216,6 @@ span {
     background-color: #c82333;
 }
 
-/* Remove these styles */
-/*
-.todo-list li form {
-    display: contents;
-}
-
-.todo-list li {
-    display: block;
-}
-*/
-
 .completed {
     text-decoration: line-through;
     color: #6c757d;
@@ -252,4 +239,36 @@ span {
     display: none;
 }
 
+/* New styles for the checkbox */
+.todo-checkbox {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
 
+.todo-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #0817275b;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.todo-checkbox:checked {
+    background-color: #007bff;
+}
+
+.todo-checkbox:checked::before {
+    content: '\2714';
+    font-size: 18px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
