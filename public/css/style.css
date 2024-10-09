@@ -60,7 +60,6 @@ nav img {
     color: rgb(37, 192, 216);
 }
 
-
 .add-todo {
     background-color: #fff;
     margin: 3rem auto;
@@ -117,7 +116,6 @@ input[type="date"] {
 
 span {
     margin: 0.1rem;
-
 }
 
 .todo-list {
@@ -137,32 +135,84 @@ span {
     padding: 0;
 }
 
-.todo-list li {
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #fff;
     margin-bottom: 0.5rem;
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-task {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    min-width: 0;
+    margin-right: 1rem;
+    position: relative;
 }
 
-.todo-list li form {
-    display: inline;
+.todo-task span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    display: inline-block;
 }
 
-.todo-list li form button.delete-button {
+.todo-task span:hover::after {
+    content: attr(data-full-text);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    white-space: normal;
+    background-color: #f8f6f6fa;
+    color: #2b2727;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 10;
+    max-width: 300px;
+    word-wrap: break-word;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.todo-task span:hover::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: calc(100% - 5px);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent;
+}
+
+.todo-due {
+    flex: 0 0 120px;
+    text-align: center;
+    padding: 0 0.5rem;
+    white-space: nowrap;
+}
+
+.todo-delete {
+    flex: 0 0 auto;
+    margin-left: 1rem;
+}
+
+.todo-delete .delete-button {
     background-color: #dc3545;
     color: #fff;
     border: none;
-    padding: 0.2rem;
+    padding: 0.4rem 0.6rem;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
-.todo-list li form button.delete-button:hover {
+.todo-delete .delete-button:hover {
     background-color: #c82333;
 }
 
@@ -181,16 +231,44 @@ span {
     margin-top: 2rem;
 }
 
-.todo-list li form input[type="checkbox"] {
-    height: 19px;
-    width: 19px;
-    /* border-radius: 25%; */
-    vertical-align: middle;
-    cursor: pointer;
+.completed-todos .todo-item {
+    opacity: 0.7;
 }
 
 ::-webkit-scrollbar {
     display: none;
 }
 
+/* New styles for the checkbox */
+.todo-checkbox {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
 
+.todo-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #0817275b;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.todo-checkbox:checked {
+    background-color: #007bff;
+}
+
+.todo-checkbox:checked::before {
+    content: '\2714';
+    font-size: 18px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

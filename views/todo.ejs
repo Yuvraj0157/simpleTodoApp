@@ -13,59 +13,71 @@
     <button type="submit" class="add-button">Add</button>
   </form>
 </div>
-<% if (todos.length> 0) { %>
+
+<% if (todos.length > 0) { %>
     <% if(todos[0].dataValues.uncomplete) { %>
         <div class="todo-list">
             <h3>Todo List</h3>
             <ul>
-                <% todos.forEach(todo=> { %> <% if (!todo.status) { %>
-                <li>
-                    <form action="/todos/update/<%= todo.id %>" method="POST">
-                        <input type="checkbox" name="completed" onchange="this.form.submit()"
-                        <%=todo.status ? 'checked' : '' %>>
-                        <span class="<%= todo.status ? 'completed' : '' %>">
-                        <%= todo.task %>
+                <% todos.forEach(todo => { %>
+                    <% if (!todo.status) { %>
+                    <li class="todo-item">
+                        <form action="/todos/update/<%= todo.id %>" method="POST" class="todo-task">
+                            <input type="checkbox" class="todo-checkbox" name="completed" onchange="this.form.submit()"
+                            <%= todo.status ? 'checked' : '' %>>
+                            <span class="<%= todo.status ? 'completed' : '' %>" data-full-text="<%= todo.task %>">
+                                <%= todo.task %>
+                            </span>
+                        </form>
+                        <span class="todo-due">
+                            <% if (todo.due) { %>
+                                <%= todo.due %>
+                            <% } else { %>
+                                No due date
+                            <% } %>
                         </span>
-                        <% if (todo.due) { %>
-                        <span> <%= todo.due %> </span>
-                        <% } else { %>
-                        <span>No due date</span>
-                        <% } %>
-                    </form>
-                    <form action="/todos/delete/<%= todo.id %>" method="POST">
-                        <button type="submit" class="delete-button">Delete</button>
-                    </form>
-                </li>
-                <% } %> <% }) %>
+                        <form action="/todos/delete/<%= todo.id %>" method="POST" class="todo-delete">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </li>
+                    <% } %>
+                <% }) %>
             </ul>
         </div>
     <% } %>
+
     <% if(todos[0].dataValues.uncomplete != todos.length) { %>
         <div class="todo-list completed-todos">
             <h3>Completed</h3>
             <ul>
-                <% todos.forEach(todo=> { %> <% if (todo.status) { %>
-                <li>
-                    <form action="/todos/update/<%= todo.id %>" method="POST">
-                        <input type="checkbox" name="completed" onchange="this.form.submit()"
-                        <%=todo.status ? 'checked' : '' %>>
-                        <span class="completed"> <%= todo.task %> </span>
-                        <% if (todo.due) { %>
-                        <span> <%= todo.due %> </span>
-                        <% } else { %>
-                        <span>No due date</span>
-                        <% } %>
-                    </form>
-                    <form action="/todos/delete/<%= todo.id %>" method="POST">
-                        <button type="submit" class="delete-button">Delete</button>
-                    </form>
-                </li>
-                <% } %> <% }) %>
+                <% todos.forEach(todo => { %>
+                    <% if (todo.status) { %>
+                    <li class="todo-item">
+                        <form action="/todos/update/<%= todo.id %>" method="POST" class="todo-task">
+                            <input type="checkbox" class="todo-checkbox" name="completed" onchange="this.form.submit()"
+                            <%= todo.status ? 'checked' : '' %>>
+                            <span class="completed" data-full-text="<%= todo.task %>">
+                                <%= todo.task %>
+                            </span>
+                        </form>
+                        <span class="todo-due">
+                            <% if (todo.due) { %>
+                                <%= todo.due %>
+                            <% } else { %>
+                                No due date
+                            <% } %>
+                        </span>
+                        <form action="/todos/delete/<%= todo.id %>" method="POST" class="todo-delete">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </li>
+                    <% } %>
+                <% }) %>
             </ul>
         </div>
     <% } %>
 <% } else { %>
-<h3 class="todo-list">No todos found</h3>
-<% } %> 
+    <h3 class="todo-list">No todos found</h3>
+<% } %>
 
 <%- include('includes/footer') %>
